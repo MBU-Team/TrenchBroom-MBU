@@ -56,6 +56,9 @@ class EntityDefinitionManager;
 class EntityModelManager;
 class Texture;
 class TextureManager;
+
+template <typename T>
+class ResourceManager;
 } // namespace TrenchBroom::Assets
 
 namespace TrenchBroom::Model
@@ -92,6 +95,7 @@ class UndoableCommand;
 class ViewEffectsService;
 enum class MapTextEncoding;
 enum class TransactionScope;
+class AsyncTaskRunner;
 
 struct PointFile
 {
@@ -122,6 +126,7 @@ protected:
   std::unique_ptr<Assets::EntityDefinitionManager> m_entityDefinitionManager;
   std::unique_ptr<Assets::EntityModelManager> m_entityModelManager;
   std::unique_ptr<Assets::TextureManager> m_textureManager;
+  std::unique_ptr<Assets::ResourceManager<AsyncTaskRunner>> m_resourceManager;
   std::unique_ptr<Model::TagManager> m_tagManager;
 
   std::unique_ptr<Model::EditorContext> m_editorContext;
@@ -679,6 +684,7 @@ private: // subclassing interface for command processing
 
 public: // asset state management
   void commitPendingAssets();
+  void processResources();
 
 public: // picking
   void pick(const vm::ray3& pickRay, Model::PickResult& pickResult) const;

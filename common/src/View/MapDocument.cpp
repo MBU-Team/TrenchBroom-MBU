@@ -25,6 +25,7 @@
 #include "Assets/EntityDefinitionGroup.h"
 #include "Assets/EntityDefinitionManager.h"
 #include "Assets/EntityModelManager.h"
+#include "Assets/ResourceManager.h"
 #include "Assets/Texture.h"
 #include "Assets/TextureManager.h"
 #include "EL/ELExceptions.h"
@@ -136,6 +137,16 @@
 
 namespace TrenchBroom::View
 {
+class AsyncTaskRunner
+{
+public:
+  template <typename T>
+  auto run(Assets::Task<T> task)
+  {
+    return std::async([task = std::move(task)]() { return task(); });
+  }
+};
+
 namespace
 {
 
@@ -381,6 +392,7 @@ MapDocument::MapDocument()
       pref(Preferences::TextureMagFilter), pref(Preferences::TextureMinFilter), logger()))
   , m_textureManager(std::make_unique<Assets::TextureManager>(
       pref(Preferences::TextureMagFilter), pref(Preferences::TextureMinFilter), logger()))
+  , m_resourceManager(std::make_unique<Assets::ResourceManager<AsyncTaskRunner>>())
   , m_tagManager(std::make_unique<Model::TagManager>())
   , m_editorContext(std::make_unique<Model::EditorContext>())
   , m_grid(std::make_unique<Grid>(4))
@@ -4227,6 +4239,12 @@ std::unique_ptr<CommandResult> MapDocument::executeAndStore(
 void MapDocument::commitPendingAssets()
 {
   m_textureManager->commitChanges();
+}
+
+void MapDocument::processResources()
+{
+  auto taskRunner = AsyncTaskRunner{};
+  m_resourceManager->process(taskRunner);
 }
 
 void MapDocument::pick(const vm::ray3& pickRay, Model::PickResult& pickResult) const
