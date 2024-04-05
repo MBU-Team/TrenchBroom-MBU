@@ -176,9 +176,9 @@ macro(configure_app_target APP_TARGET_NAME SHOULD_BUILD_MANUAL)
     endif()
 
     # Generate a small stripped PDB for release builds so we get stack traces with symbols
-    if(COMPILER_IS_MSVC)
-        set_target_properties(${APP_TARGET_NAME} PROPERTIES LINK_FLAGS_RELEASE "/DEBUG /PDBSTRIPPED:Release/${APP_TARGET_NAME}-stripped.pdb /PDBALTPATH:${APP_TARGET_NAME}-stripped.pdb")
-    endif()
+    #if(COMPILER_IS_MSVC)
+    #    set_target_properties(${APP_TARGET_NAME} PROPERTIES LINK_FLAGS_RELEASE "/DEBUG /PDBSTRIPPED:Release/${APP_TARGET_NAME}-stripped.pdb /PDBALTPATH:${APP_TARGET_NAME}-stripped.pdb")
+    #endif()
 
     if(${CMAKE_SYSTEM_NAME} MATCHES "Linux|FreeBSD")
         # Make executable name conventional lowercase on linux
