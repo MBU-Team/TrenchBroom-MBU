@@ -1,4 +1,4 @@
-# TrenchBroom
+# TrenchBroom for OpenMBU
 
 [![TrenchBroom Icon](app/resources/graphics/images/AppIcon.png)](https://www.youtube.com/watch?v=shcAvnYp9ow)
 
