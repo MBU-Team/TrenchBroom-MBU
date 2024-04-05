@@ -561,6 +561,8 @@ std::vector<Assets::EntityModelVertex> computeMeshVertices(
     return vertices;
   }
 
+  bool bonesFailed = false;
+
   // the weights for each vertex are stored in the bones, not in
   // the vertices. this loop lets us collect the bone weightings
   // per vertex so we can process them.
@@ -575,6 +577,11 @@ std::vector<Assets::EntityModelVertex> computeMeshVertices(
     {
       for (unsigned int j = 0; j < bone.mNumWeights; ++j)
       {
+        if (bone.mWeights[j].mVertexId >= mesh.mNumVertices)
+        {
+          bonesFailed = true;
+          break;
+        }
         weightsPerVertex[bone.mWeights[j].mVertexId].push_back(
           {*index, bone.mWeights[j].mWeight, bone});
       }
@@ -595,7 +602,7 @@ std::vector<Assets::EntityModelVertex> computeMeshVertices(
     auto meshVertices = mesh.mVertices[i];
 
     // Bone indices and weights
-    if (mesh.HasBones() && !boneTransforms.empty() && !weightsPerVertex[i].empty())
+    if (!bonesFailed && mesh.HasBones() && !boneTransforms.empty() && !weightsPerVertex[i].empty())
     {
       const auto vertWeights = weightsPerVertex[i];
       auto vertPos = aiVector3D{};
