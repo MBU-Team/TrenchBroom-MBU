@@ -208,9 +208,9 @@ gemDataBlock == "GemItem_5pts" -> 	{"path":"models/items/gemitem_5pts.fbx","scal
 
 @PointClass base(SpawnSphere) model({"path":"models/markers/spawnsphere.fbx","scale":16}) size(-8 -8 -4, 8 8 12) = SpawnSphereMarker : "" []
 
-@PointClass base(StaticShape)  model({"path":"models/signs/cautionsign.fbx","scale":32}) size(-20 -1 -40, 13 2.5 24) = SignCaution : "Caution!" []
-@PointClass base(StaticShape)  model({"path":"models/signs/cautionsign_caution.fbx","scale":32}) size(-20 -1 -40, 13 2.5 24) = SignCautionCaution : "Caution!" []
-@PointClass base(StaticShape)  model({"path":"models/signs/cautionsign_danger.fbx","scale":32}) size(-20 -1 -40, 13 2.5 24) = SignCautionDanger : "Danger!" []
-@PointClass base(StaticShape)  model({"path":"models/signs/arrowsign_up.fbx","scale":32}) size(-27 -8 0, 8 8 40) = ArrowUp : "" []
-@PointClass base(StaticShape)  model({"path":"models/signs/arrowsign_down.fbx","scale":32}) size(-27 -8 0, 8 8 40) = ArrowDown : "" []
-@PointClass base(StaticShape)  model({"path":"models/signs/arrowsign_side.fbx","scale":32}) size(-27 -8 0, 8 8 40) = ArrowSide : "" []
+@PointClass base(StaticShape)  model({"path":"models/signs/cautionsign.fbx","scale":32}) size(-20 -1 -40, 20 1 24) = SignCaution : "Caution!" []
+@PointClass base(StaticShape)  model({"path":"models/signs/cautionsign_caution.fbx","scale":32}) size(-20 -1 -40, 20 1 24) = SignCautionCaution : "Caution!" []
+@PointClass base(StaticShape)  model({"path":"models/signs/cautionsign_danger.fbx","scale":32}) size(-20 -1 -40, 20 1 24) = SignCautionDanger : "Danger!" []
+@PointClass base(StaticShape)  model({"path":"models/signs/arrowsign_up.fbx","scale":32}) size(-27 -8 0, 27 8 40) = ArrowUp : "" []
+@PointClass base(StaticShape)  model({"path":"models/signs/arrowsign_down.fbx","scale":32}) size(-27 -8 0, 27 8 40) = ArrowDown : "" []
+@PointClass base(StaticShape)  model({"path":"models/signs/arrowsign_side.fbx","scale":32}) size(-27 -8 0, 27 8 40) = ArrowSide : "" []
